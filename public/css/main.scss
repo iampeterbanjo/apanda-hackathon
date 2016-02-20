@@ -18,18 +18,26 @@ html {
 
 body {
   padding-top: $navbar-height;
-  margin-bottom: 75px;
 }
 
 footer {
-  position: absolute;
-  bottom: 0;
   width: 100%;
-  height: 45px;
-  line-height: 45px;
+  //line-height: 20px;
+  background-color: $gray-dark;
+  line-height: 80px;
 
-  p, ul {
+  p, ul, a {
     margin-bottom: 0;
+    color: $gray-lighter;
+
+  }
+  .navbar-brand {
+    height: 80px;
+  }
+  .socket {
+    background-color: $brand-primary;
+    color: $gray-light;
+    line-height: 60px;
   }
 }
 
@@ -56,6 +64,7 @@ textarea {
 .navbar-brand {
   font-family: $font-family-serif;
   font-size: 27px;
+  margin-left: -$grid-gutter-width/2;
 }
 
 // Alerts
