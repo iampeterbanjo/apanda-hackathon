@@ -86,3 +86,25 @@ textarea {
 .btn {
   margin-right: 20px;
 }
+
+.jumbotron {
+  margin-bottom: 0;
+  &.alt {
+    background: #fff;
+    color: #222;
+  }
+}
+
+// Section
+.section {
+  padding-top: 50px;
+  padding-bottom: 80px;
+  &.alt {
+    background-color: $gray-lighter;
+  }
+}
+
+
+.section-title {
+  margin-bottom: 50px;
+}
