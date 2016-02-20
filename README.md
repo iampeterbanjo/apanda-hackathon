@@ -91,7 +91,7 @@ List of Packages
 | supertest                       | HTTP assertion library.                                               |
 | multiline                       | Multi-line strings for the generator.                                 |
 | blessed                         | Interactive command line interface for the generator.                 |                                    |
-
+```
 You need to have a MongoDB server running before launching `app.js`. You can
 download MongoDB [here](http://mongodb.org/downloads), or install it via a package manager.
 <img src="http://dc942d419843af05523b-ff74ae13537a01be6cfec5927837dcfe.r14.cf1.rackcdn.com/wp-content/uploads/windows-8-50x50.jpg" height="17">
@@ -158,7 +158,7 @@ if messages.errors
   .alert.alert-danger.fade.in
     for error in messages.errors
       div= error.msg
-```
+
 In the first step, `'errors'` is the name of a flash message, which should match the
 name of the property on `messages` object in your views. You place alert messages
 inside `if message.errors` because you don't want to show them flash messages are actually present.
