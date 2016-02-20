@@ -30,3 +30,6 @@ Thumbs.db
 public/css/main.css
 public/css/main.css.map
 .vscode/
+
+# Other
+.sass-cache
