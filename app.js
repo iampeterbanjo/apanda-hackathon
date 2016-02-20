@@ -38,6 +38,7 @@ var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
 var contactsController = require('./controllers/contacts');
+var mailController = require('./controllers/mail');
 
 /**
  * API keys and Passport configuration.
@@ -135,6 +136,7 @@ app.get('/account/unlink/:provider', passportConf.isAuthenticated, userControlle
  * Hackathon routes
  */
 app.get('/contacts', passportConf.isAuthenticated, contactsController.getContacts);
+app.get('/mail', passportConf.isAuthenticated, mailController.getMail);
 
 /**
  * API examples routes.
