@@ -13,8 +13,8 @@ exports.getLogin = function(req, res) {
   if (req.user) {
     return res.redirect('/');
   }
-  res.render('account/login', {
-    title: 'Login'
+  res.render('contacts/list', {
+    title: 'Contacts'
   });
 };
 
