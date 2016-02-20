@@ -10,17 +10,17 @@ block content
     p #{contacts}
 
     .row
-      .col-sm-4
+      .col-sm-4.contact-list-container
         h4 Contact list
 
-        div.list-group
+        div.list-group.contact-list
           a.list-group-item(href="#") Peter
           a.list-group-item(href="#") Dan
           a.list-group-item(href="#") Adrian
           a.list-group-item(href="#") Amulya
           a.list-group-item(href="#") Niko
 
-      .col-sm-8
+      .col-sm-8.contact-details-container
         .row
           .col-xs-12
             .media
@@ -35,19 +35,22 @@ block content
                 p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, dolorum. Ipsum unde aut sed, sunt deleniti vel. Ipsa commodi, a, quam vero adipisci numquam. Voluptatibus dolores laborum adipisci inventore dolorem.
         .row
           .col-sm-4.col-xs-12
-            h5 Personality
-
-            .graph line-graph
-
-          .col-sm-4.col-xs-12
-            h5 Consumer Needs
-
-            .graph line-graph
+            .panel.panel-default
+              h5.panel-body Personality
+              .panel-footer
+                .graph line-graph
 
           .col-sm-4.col-xs-12
-            h5 Values
+            .panel.panel-default
+              h5.panel-body Consumer Needs
+              .panel-footer
+                .graph line-graph
 
-            .graph line-graph
+          .col-sm-4.col-xs-12
+            .panel.panel-default
+              h5.panel-body Values
+              .panel-footer
+                .graph line-graph
 
         .row
           .col-xs-12
