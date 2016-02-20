@@ -92,52 +92,6 @@ List of Packages
 | multiline                       | Multi-line strings for the generator.                                 |
 | blessed                         | Interactive command line interface for the generator.                 |                                    |
 
-
-FAQ
----
-
-### Why do I get `403 Error: Forbidden` when submitting a form?
-You need to add the following hidden input element to your form. This has been
-added in the [pull request #40](https://github.com/sahat/hackathon-starter/pull/40)
-as part of the CSRF protection.
-
-```
-input(type='hidden', name='_csrf', value=_csrf)
-```
-
-**Note:** It is now possible to whitelist certain URLs. In other words you can
-specify a list of routes that should bypass CSRF verification check.
-
-**Note 2:** To whitelist dynamic URLs use regular expression tests inside the
-CSRF middleware to see if `req.originalUrl` matches your desired pattern.
-
-### What is cluster_app.js?
-
-**Note**: It is now part of the generator as of **v2.1**.
-
-From the [Node.js Documentation](http://nodejs.org/api/cluster.html#cluster_how_it_works):
-> A single instance of Node runs in a single thread. To take advantage of multi-core systems
-> the user will sometimes want to launch a cluster of Node processes to handle the load.
-> The cluster module allows you to easily create child processes that all share server ports.
-
-Running `cluster_app.js` allows you to take advantage of this feature by forking
-a process of `app.js` for each detected CPU. For the majority of applications
-serving HTTP requests, this is a nice benefit. However, the cluster module is
-still in experimental stage, therefore it should only be used after understanding
-its purpose and behavior. To use it, simply run `node cluster_app.js`.
-**Its use is entirely optional and `app.js` is not tied in any way to it**.
-As a reminder, if you plan to use `cluster_app.js` instead of `app.js`,
-be sure to indicate that in `package.json` when you are ready to deploy your app.
-
-### I am getting MongoDB Connection Error, how do I fix it?
-That's a custom error message defined in `app.js` to indicate that there was a
-problem connecting to MongoDB:
-
-```js
-mongoose.connection.on('error', function() {
-  console.error('MongoDB Connection Error. Please make sure MongoDB is running.');
-});
-```
 You need to have a MongoDB server running before launching `app.js`. You can
 download MongoDB [here](http://mongodb.org/downloads), or install it via a package manager.
 <img src="http://dc942d419843af05523b-ff74ae13537a01be6cfec5927837dcfe.r14.cf1.rackcdn.com/wp-content/uploads/windows-8-50x50.jpg" height="17">
