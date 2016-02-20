@@ -24,9 +24,16 @@ block content
       .col-sm-8
         .row
           .col-xs-12
-            h4 Personality portrait
+            .media
+              .media-left
+                img.media-object(src="https://placehold.it/150x150", alt="Name")
 
-            p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, dolorum. Ipsum unde aut sed, sunt deleniti vel. Ipsa commodi, a, quam vero adipisci numquam. Voluptatibus dolores laborum adipisci inventore dolorem.
+              .media-body
+                h4.media-heading
+                  span.name (contact.name)
+                  | &nbsp;Personality portrait
+
+                p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, dolorum. Ipsum unde aut sed, sunt deleniti vel. Ipsa commodi, a, quam vero adipisci numquam. Voluptatibus dolores laborum adipisci inventore dolorem.
         .row
           .col-sm-4.col-xs-12
             h5 Personality
