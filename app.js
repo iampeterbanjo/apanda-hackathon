@@ -37,6 +37,7 @@ var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
+var contactsController = require('./controllers/contacts');
 
 /**
  * API keys and Passport configuration.
@@ -133,7 +134,7 @@ app.get('/account/unlink/:provider', passportConf.isAuthenticated, userControlle
 /**
  * Hackathon routes
  */
-app.get('/contacts', passportConf.isAuthenticated, userController.getContacts);
+app.get('/contacts', passportConf.isAuthenticated, contactsController.getContacts);
 
 /**
  * API examples routes.

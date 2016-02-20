@@ -24,6 +24,7 @@
     "express-flash": "^0.0.2",
     "express-session": "^1.13.0",
     "express-validator": "^2.19.1",
+    "google-contacts": "^0.1.2",
     "jade": "^1.11.0",
     "lob": "^3.8.0",
     "lodash": "^4.4.0",
