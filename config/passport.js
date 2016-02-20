@@ -404,6 +404,45 @@ passport.use('tumblr', new OAuthStrategy({
 ));
 
 /**
+ * Gmail API OAuth.
+//  */
+// var googleSecrets = {
+// 			clientID: process.env.GOOGLE_ID,
+// 			clientSecret: process.env.GOOGLE_SECRET,
+// 			callbackURL: '/auth/google/callback'
+// 		}
+//     , googleAuth = require('google-auth-library')
+// 		, auth = new googleAuth()
+//     , oauth2Client = new auth.OAuth2(
+//         googleSecrets.clientId
+//         , googleSecrets.clientSecret
+//         , googleSecrets.redirectUrl
+//     )
+//     , authUrl = oauth2Client.generateAuthUrl({
+//       access_type: 'offline',
+//       scope: ['https://www.googleapis.com/auth/gmail.readonly']
+//     });
+
+// passport.use('gmail', new OAuthStrategy({
+//     requestTokenURL: 'http://www.tumblr.com/oauth/request_token',
+//     accessTokenURL: 'http://www.tumblr.com/oauth/access_token',
+//     userAuthorizationURL: authUrl,
+//     consumerKey: googleSecrets.clientId,
+//     consumerSecret: googleSecrets.clientSecret,
+//     callbackURL: googleSecrets.redirectUrl,
+//     passReqToCallback: true
+//   },
+//   function(req, token, tokenSecret, profile, done) {
+//     User.findById(req.user._id, function(err, user) {
+//       user.tokens.push({ kind: 'tumblr', accessToken: token, tokenSecret: tokenSecret });
+//       user.save(function(err) {
+//         done(err, user);
+//       });
+//     });
+//   }
+// ));
+
+/**
  * Foursquare API OAuth.
  */
 passport.use('foursquare', new OAuth2Strategy({
