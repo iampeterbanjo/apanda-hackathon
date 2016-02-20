@@ -5,14 +5,21 @@ block content
     h3 Your Contacts
 
     p Select a contact from the list to analyse their profile
+    p #{token}
+    p #{user}
+    p #{contacts}
 
     .row
       .col-sm-4
         h4 Contact list
 
-        p #{token}
-        p #{user}
-        p #{contacts}
+        ul
+          li
+            a(href="#") Peter
+          li
+            a(href="#") Dan
+          li
+            a(href="#") Adrian
 
       .col-sm-8
         .row
