@@ -405,7 +405,7 @@ passport.use('tumblr', new OAuthStrategy({
 
 /**
  * Gmail API OAuth.
-//  */
+ */
 // var googleSecrets = {
 // 			clientID: process.env.GOOGLE_ID,
 // 			clientSecret: process.env.GOOGLE_SECRET,
@@ -424,8 +424,6 @@ passport.use('tumblr', new OAuthStrategy({
 //     });
 
 // passport.use('gmail', new OAuthStrategy({
-//     requestTokenURL: 'http://www.tumblr.com/oauth/request_token',
-//     accessTokenURL: 'http://www.tumblr.com/oauth/access_token',
 //     userAuthorizationURL: authUrl,
 //     consumerKey: googleSecrets.clientId,
 //     consumerSecret: googleSecrets.clientSecret,
@@ -434,7 +432,7 @@ passport.use('tumblr', new OAuthStrategy({
 //   },
 //   function(req, token, tokenSecret, profile, done) {
 //     User.findById(req.user._id, function(err, user) {
-//       user.tokens.push({ kind: 'tumblr', accessToken: token, tokenSecret: tokenSecret });
+//       user.tokens.push({ kind: 'google', accessToken: token, tokenSecret: tokenSecret });
 //       user.save(function(err) {
 //         done(err, user);
 //       });
