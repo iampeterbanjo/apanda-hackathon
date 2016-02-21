@@ -136,7 +136,7 @@ app.get('/account/unlink/:provider', passportConf.isAuthenticated, userControlle
  * Hackathon routes
  */
 app.get('/contacts', passportConf.isAuthenticated, contactsController.getContacts);
-app.get('/mail', passportConf.isAuthenticated, mailController.getMail);
+app.get('/mail',  passport.authenticate('gmail', { scope: 'profile email' }), mailController.getMail);
 
 /**
  * API examples routes.
