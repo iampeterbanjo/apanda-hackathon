@@ -152,7 +152,7 @@ app.post('/api/upload', upload.single('myFile'), apiController.postFileUpload);
  * OAuth authentication routes. (Sign in)
  */
 
-app.get('/auth/google', passport.authenticate('google', { scope: 'profile email' }));
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile','https://www.googleapis.com/auth/contacts.readonly'] }));
 app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), function(req, res) {
   res.redirect('/contacts');
 });
