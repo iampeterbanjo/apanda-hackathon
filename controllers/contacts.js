@@ -5,7 +5,7 @@ var _ = require('lodash');
 /**
  * GET /contacts
  */
-exports.getContacts = function(token) {
+exports.getContacts = function(req, res, token) {
 
   // User.findById(req.user.id, function(err, user) {
 		// var googleToken = _.find(user.tokens, { kind: 'google' });
@@ -31,10 +31,14 @@ exports.getContacts = function(token) {
 	var c = new GoogleContacts({
 	  token: token
 	});
-	
-	c.getContacts(function(err,cb){
-		if(err) throw err;
-		//Logging the contactlist in console
-		console.log(cb);
+
+	c.getContacts(function(err, contacts){
+		if(err) {
+			console.log(err);
+			res.redirect('/google');
+		}
+		res.render('contacts/list', {
+			contacts: contacts
+		})
 	});
 }
