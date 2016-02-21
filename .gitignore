@@ -33,3 +33,4 @@ public/css/main.css.map
 
 # Other
 .sass-cache
+.credentials/
