@@ -83,7 +83,6 @@ List of Packages
 | passport-github                 | Sign-in with GitHub plugin.                                           |
 | passport-google-oauth           | Sign-in with Google plugin.                                           |
 | passport-twitter                | Sign-in with Twitter plugin.                                          |
-| passport-instagram              | Sign-in with Instagram plugin.                                        |
 | passport-local                  | Sign-in with Username and Password plugin.                            |
 | passport-linkedin-oauth2        | Sign-in with LinkedIn plugin.                                         |
 | passport-oauth                  | Allows you to set up your own OAuth 1.0a and OAuth 2.0 strategies.    |
