@@ -37,6 +37,7 @@ exports.getContacts = function(req, res, token) {
 			console.log(err);
 			res.redirect('/google');
 		}
+
 		res.render('contacts/list', {
 			contacts: contacts
 		})

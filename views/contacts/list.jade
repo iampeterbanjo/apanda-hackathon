@@ -5,20 +5,14 @@ block content
     h3 Your Contacts
 
     p Select a contact from the list to analyse their profile
-    p #{token}
-    p #{user}
-    p #{contacts}
 
     .row
       .col-sm-4.contact-list-container
         h4 Contact list
 
         div.list-group.contact-list
-          a.list-group-item(href="#") Peter
-          a.list-group-item(href="#") Dan
-          a.list-group-item(href="#") Adrian
-          a.list-group-item(href="#") Amulya
-          a.list-group-item(href="#") Niko
+          each contact in contacts
+            a.list-group-item(href="#", data-email="#{contact.email}") #{contact.name}
 
       .col-sm-8.contact-details-container
         .row
