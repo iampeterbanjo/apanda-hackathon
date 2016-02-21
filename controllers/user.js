@@ -11,7 +11,7 @@ var User = require('../models/User');
  */
 exports.getLogin = function(req, res) {
   if (req.user) {
-    return res.redirect('/');
+    return res.redirect('/contacts');
   }
   res.render('account/login', {
     title: 'Login'
@@ -46,7 +46,7 @@ exports.postLogin = function(req, res, next) {
         return next(err);
       }
       req.flash('success', { msg: 'Success! You are logged in.' });
-      res.redirect(req.session.returnTo || '/');
+      res.redirect('/contacts');
     });
   })(req, res, next);
 };

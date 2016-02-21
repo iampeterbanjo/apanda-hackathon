@@ -1,10 +1,12 @@
-@import "themes/default/variables";
+@import url('//fonts.googleapis.com/css?family=Roboto+Slab:400,700');
+
+@import "themes/flatly/variables";
 
 @import "lib/bootstrap/bootstrap";
 @import "lib/bootstrap-social";
 @import "lib/font-awesome/font-awesome";
 
-@import "themes/default/default";
+@import "themes/flatly/flatly";
 
 // Scaffolding
 // -------------------------
@@ -15,19 +17,27 @@ html {
 }
 
 body {
-  padding-top: 60px;
-  margin-bottom: 75px;
+  padding-top: $navbar-height;
 }
 
 footer {
-  position: absolute;
-  bottom: 0;
   width: 100%;
-  height: 45px;
-  line-height: 45px;
+  //line-height: 20px;
+  background-color: $gray-dark;
+  line-height: 80px;
 
-  p, ul {
+  p, ul, a {
     margin-bottom: 0;
+    color: $gray-lighter;
+
+  }
+  .navbar-brand {
+    height: 80px;
+  }
+  .socket {
+    background-color: $brand-primary;
+    color: $gray-light;
+    line-height: 60px;
   }
 }
 
@@ -41,10 +51,20 @@ textarea {
 // Navbar
 // -------------------------
 
+.navbar {
+  border-width: 0 0 1px;
+}
+
 .navbar-nav img {
   width: 30px;
   height: 30px;
   margin: -15px 15px -15px;
+}
+
+.navbar-brand {
+  font-family: $font-family-serif;
+  font-size: 27px;
+  margin-left: -$grid-gutter-width/2;
 }
 
 // Alerts
@@ -68,4 +88,32 @@ textarea {
 
 .fa {
   margin-right: 6px;
+}
+
+// Jumbo
+// -------------------------
+.btn {
+  margin-right: 20px;
+}
+
+.jumbotron {
+  margin-bottom: 0;
+  &.alt {
+    background: #fff;
+    color: #222;
+  }
+}
+
+// Section
+.section {
+  padding-top: 50px;
+  padding-bottom: 80px;
+  &.alt {
+    background-color: $gray-lighter;
+  }
+}
+
+
+.section-title {
+  margin-bottom: 50px;
 }
