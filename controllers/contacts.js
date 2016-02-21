@@ -1,7 +1,7 @@
 var GoogleContacts = require('google-contacts').GoogleContacts;
 var User = require('../models/User');
 var _ = require('lodash');
-
+var request = require('request')
 /**
  * GET /contacts
  */
@@ -37,4 +37,21 @@ exports.getContacts = function(token) {
 		//Logging the contactlist in console
 		console.log(cb);
 	});
+
+	var options = {
+	  url: 'https://www.googleapis.com/userinfo/v2/me',
+	  headers: {
+	    'Authorization': 'Bearer '+token
+	  }
+	};
+
+	// This request fetches the info of the user
+	request.get(options, function(error, response, body){
+		if (!error && response.statusCode == 200) {
+		    var info = JSON.parse(body);
+		    //Logging the userinfo in console
+		    console.log(info);
+		    //TODO: save the user info in the database. 
+		  }
+	} )
 }

@@ -152,7 +152,7 @@ app.post('/api/upload', upload.single('myFile'), apiController.postFileUpload);
  * OAuth authentication routes. (Sign in)
  */
 
-app.get('/auth/google', passport.authenticate('google', { scope: 'profile email' }));
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile','https://www.googleapis.com/auth/contacts.readonly'] }));
 app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), function(req, res) {
   res.redirect('/contacts');
 });
@@ -170,7 +170,7 @@ app.get('/auth/google/redirecturl', function(req, res){
 
 
 app.get('/google', function(req, res){
-    var code = '<!DOCTYPE html><html lang="en"><head> <meta charset="UTF-8"><title>Login</title></head><body> <a href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/contacts.readonly&state=security_token%3D138r5719ru3e1%26url%3Dhttps://oa2cb.example.com/myHome&redirect_uri=http://localhost:3000/auth/google/redirecturl&response_type=code&client_id='+process.env.GOOGLE_ID+'&access_type=offline">Authenticate</a></body></html>';
+    var code = '<!DOCTYPE html><html lang="en"><head> <meta charset="UTF-8"><title>Login</title></head><body> <a href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/contacts.readonly&state=security_token%3D138r5719ru3e1%26url%3Dhttps://oa2cb.example.com/myHome&redirect_uri=http://localhost:3000/auth/google/redirecturl&response_type=code&client_id='+process.env.GOOGLE_ID+'&access_type=offline">Authenticate</a></body></html>';
     res.send(code);
   })
 
