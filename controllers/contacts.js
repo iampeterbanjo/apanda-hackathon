@@ -37,7 +37,6 @@ exports.getContacts = function(req, res, token) {
 			console.log(err);
 			res.redirect('/google');
 		}
-		res.set({'Content-Type':'text/plain;charset=utf-8','Content-Length': Buffer.byteLength(contacts, 'utf-8')}); 
 		res.render('contacts/list', {
 			contacts: contacts
 		})
@@ -56,7 +55,7 @@ exports.getContacts = function(req, res, token) {
 		    var info = JSON.parse(body);
 		    //Logging the userinfo in console
 		    console.log(info);
-		    //TODO: save the user info in the database. 
+		    //TODO: save the user info in the database.
 		  }
 	} )
 }
