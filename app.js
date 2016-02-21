@@ -150,8 +150,17 @@ app.post('/api/upload', upload.single('myFile'), apiController.postFileUpload);
 /**
  * OAuth authentication routes. (Sign in)
  */
+// https://developers.google.com/identity/protocols/googlescopes
+app.get('/auth/google', passport.authenticate('google', { scope: [
+    'profile'
+    , 'email'
+    , 'https://www.googleapis.com/auth/gmail.readonly'
+    , 'https://www.googleapis.com/auth/contacts'
+    , 'https://www.googleapis.com/auth/contacts.readonly'
+    , 'https://www.google.com/m8/feeds'
+  ]
+}));
 
-app.get('/auth/google', passport.authenticate('google', { scope: 'profile email' }));
 app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), function(req, res) {
   res.redirect('/contacts');
 });

@@ -6,7 +6,7 @@ var _ = require('lodash');
  * GET /contacts
  */
 exports.getContacts = function(req, res) {
-
+	console.log(req);
   User.findById(req.user.id, function(err, user) {
 		var googleToken = _.find(user.tokens, { kind: 'google' });
 		var c = new GoogleContacts({
