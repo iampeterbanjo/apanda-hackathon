@@ -37,7 +37,7 @@ var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
-var contactsController = require('./controllers/contacts'); 
+var contactsController = require('./controllers/contacts');
 var Gauth = require('./controllers/oauth-google')
 /**
  * API keys and Passport configuration.
@@ -162,15 +162,15 @@ app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedi
 });
 
 app.get('/auth/google/redirecturl', function(req, res){
-    
-    Gauth.getToken(req.query.code);
+
+    Gauth.getToken(req, res, req.query.code);
     res.send(200);
     console.log(req.query.code)
 })
 
 
 app.get('/google', function(req, res){
-    var code = '<!DOCTYPE html><html lang="en"><head> <meta charset="UTF-8"><title>Login</title></head><body> <a href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/contacts.readonly&state=security_token%3D138r5719ru3e1%26url%3Dhttps://oa2cb.example.com/myHome&redirect_uri=http://localhost:3000/auth/google/redirecturl&response_type=code&client_id='+process.env.GOOGLE_ID+'&access_type=offline">Authenticate</a></body></html>';
+    var code = '<!DOCTYPE html><html lang="en"><head> <meta charset="UTF-8"><title>Login</title></head><body> <a href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/contacts.readonly&state=security_token%3D138r5719ru3e1%26url%3Dhttps://oa2cb.example.com/myHome&redirect_uri=http://' + req.headers.host + '/auth/google/redirecturl&response_type=code&client_id='+ process.env.GOOGLE_ID+'&access_type=offline">Authenticate</a></body></html>';
     res.send(code);
   })
 
