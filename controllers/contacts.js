@@ -37,6 +37,7 @@ exports.getContacts = function(req, res, token) {
 			console.log(err);
 			res.redirect('/google');
 		}
+		res.set({'Content-Type':'text/plain;charset=utf-8','Content-Length': Buffer.byteLength(contacts, 'utf-8')}); 
 		res.render('contacts/list', {
 			contacts: contacts
 		})

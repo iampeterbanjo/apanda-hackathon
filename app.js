@@ -164,7 +164,7 @@ app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedi
 app.get('/auth/google/redirecturl', function(req, res){
 
     Gauth.getToken(req, res, req.query.code);
-    res.send(200);
+    // res.send(200);
     console.log(req.query.code)
 })
 
