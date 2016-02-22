@@ -1,6 +1,9 @@
 var request = require('request')
     , watson = require('watson-developer-cloud')
     , _ = require('lodash')
+    , helpers = require('../public/js/lib/personality-insights-helpers.js')
+    , Dictionary = require('../public/js/lib/dictionary.standalone.js')
+    , Profile = require('../public/js/lib/personality-insights-profile.0.1.0.js')
     , personality_insights = watson.personality_insights({
       username: process.env.IBM_PERSONALITY_INSIGHTS_USERNAME
       , password: process.env.IBM_PERSONALITY_INSIGHTS_PASSWORD
@@ -52,17 +55,25 @@ exports.getArtistProfile = function(req, res) {
     });
 
     personality_insights.profile({text: songs},
-      function(watsonError, profile) {
+      function(watsonError, insights) {
         if(watsonError) {
           res.flash('error', {msg: watsonError});
         }
 
-        var personality = profile.tree.children[0];
-        console.log(personality);
+        var data = helpers.changeProfileLabels(insights)
+            , profile = new Profile(data)
+            , personality = profile.mapped.personality
+            , needs = profile.mapped.needs
+            , values = profile.mapped.values;
+
+        // console.log(profile);
+        // console.log(profile.mapped.values);
 
         res.render('artists/profile', {
           name: name
-          , profile: profile
+          , personality: personality
+          , needs: needs
+          , values: values
         });
       }
     );
