@@ -32,7 +32,7 @@ exports.getTopArtists = function(req, res) {
     res.render('artists/top', {
       artists: artists
     });
-  })
+  });
 }
 
 exports.getArtistProfile = function(req, res) {
@@ -46,13 +46,15 @@ exports.getArtistProfile = function(req, res) {
     var lyrics, songs;
 
     if(error) {
-      res.flash('error', { msg: error });
+      // res.flash('error', { msg: error });
+      console.log('Error: ' + error);
     }
 
     try {
       lyrics = JSON.parse(body);
     } catch(e) {
-      res.flash('error', { msg: e });
+      // res.flash('error', { msg: e });
+      console.log('Exception: ' + e);
     }
 
     songs = lyrics.map(function(l) {
@@ -82,27 +84,43 @@ exports.getArtistProfile = function(req, res) {
           traits.push(trait.self);
         }
 
-        Object.keys(personality.trait).map(function(key){
-          collectTraits(personality.trait[key]);
-        });
+        function format(trait) {
+          return {
+            name: trait.self.name
+            , percentage: Math.floor(trait.self.percentage * 100)
+          }
+        }
 
-        Object.keys(needs.trait).map(function(key){
-          collectTraits(needs.trait[key]);
-        });
-
-        Object.keys(values.trait).map(function(key){
-          collectTraits(values.trait[key]);
-        });
-
-        highestTraits.sort(function(a, b){
+        function sortDescending(a, b){
           return b.percentage - a.percentage;
-        })
+        }
+
+        personality = Object.keys(personality.trait).map(function(key){
+          collectTraits(personality.trait[key]);
+          return format(personality.trait[key]);
+        });
+
+        needs = Object.keys(needs.trait).map(function(key){
+          collectTraits(needs.trait[key]);
+          return format(needs.trait[key]);
+        });
+
+        values = Object.keys(values.trait).map(function(key){
+          collectTraits(values.trait[key]);
+          return format(values.trait[key]);
+        });
+
+        highestTraits.sort(sortDescending);
+
+        personality.sort(sortDescending);
+        needs.sort(sortDescending);
+        values.sort(sortDescending);
 
         res.render('artists/profile', {
           name: name
-          , personality: personality.trait
-          , needs: needs.trait
-          , values: values.trait
+          , personality: personality
+          , needs: needs
+          , values: values
           , summary: summary
           , traits: traits
           , highestTraits: highestTraits

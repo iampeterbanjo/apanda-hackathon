@@ -32,9 +32,9 @@ block content
         each persona in personality
           .col-sm-4.col-xs-12
             .panel.panel-default
-              h5.panel-body #{persona.self.name}
+              h5.panel-body #{persona.name}
               .panel-footer
-                .graph #{persona.self.percentage}
+                .graph #{persona.percentage}
   .row
     .col-xs-12
       h5 Needs
@@ -43,9 +43,9 @@ block content
         each need in needs
           .col-sm-4.col-xs-12
             .panel.panel-default
-              h5.panel-body #{need.self.name}
+              h5.panel-body #{need.name}
               .panel-footer
-                .graph #{need.self.percentage}
+                .graph #{need.percentage}
   .row
     .col-xs-12
       h5 Values
@@ -54,9 +54,10 @@ block content
         each value in values
           .col-sm-4.col-xs-12
             .panel.panel-default
-              h5.panel-body #{value.self.name}
+              h5.panel-body #{value.name}
               .panel-footer
-                .graph #{value.self.percentage}
+                .graph #{value.percentage}
 
   script var highestTraits = !{JSON.stringify(highestTraits)}
+
   script var traits = !{JSON.stringify(traits)}
