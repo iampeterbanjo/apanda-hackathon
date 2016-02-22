@@ -34,7 +34,7 @@ block content
             .panel.panel-default
               h5.panel-body #{persona.name}
               .panel-footer
-                .graph #{persona.percentage}
+                .percent #{persona.percentage}
   .row
     .col-xs-12
       h5 Needs
@@ -45,7 +45,7 @@ block content
             .panel.panel-default
               h5.panel-body #{need.name}
               .panel-footer
-                .graph #{need.percentage}
+                .percent #{need.percentage}
   .row
     .col-xs-12
       h5 Values
@@ -56,7 +56,7 @@ block content
             .panel.panel-default
               h5.panel-body #{value.name}
               .panel-footer
-                .graph #{value.percentage}
+                .percent #{value.percentage}
 
   script var highestTraits = !{JSON.stringify(highestTraits)}
 
