@@ -4,12 +4,12 @@ block content
   .page-header
     h3 Top Artists
 
-    p Select an artist
+  .row
+    .col-sm-10.artist-list-container
+      h4 Artists
 
-    .row
-      .col-sm-10.artist-list-container
-        h4 Artists
+      p Select an artist
 
-        div.list-group.artist-list
-          each artist in artists
-            a.list-group-item(href="/artists/#{artist.name}", data-artist-id="#{artist.id}") #{artist.name}
+      div.list-group.artist-list
+        each artist in artists
+          a.list-group-item(href="/artists/#{artist.name}", data-artist-id="#{artist.id}") #{artist.name}
