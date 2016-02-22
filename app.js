@@ -38,6 +38,7 @@ var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
 var contactsController = require('./controllers/contacts');
+var artistsController = require('./controllers/artists');
 var Gauth = require('./controllers/oauth-google')
 /**
  * API keys and Passport configuration.
@@ -136,6 +137,10 @@ app.get('/account/unlink/:provider', passportConf.isAuthenticated, userControlle
  * Hackathon routes
  */
 app.get('/contacts', passportConf.isAuthenticated, contactsController.getContacts);
+
+app.get('/artists/top', artistsController.getTopArtists);
+
+app.get('/artists/:name', artistsController.getArtistProfile);
 
 /**
  * API examples routes.

@@ -9,6 +9,7 @@
 @import "themes/flatly/flatly";
 
 @import "partials/contacts";
+@import "partials/profile";
 
 // Scaffolding
 // -------------------------
@@ -118,4 +119,8 @@ textarea {
 
 .section-title {
   margin-bottom: 50px;
+}
+
+.pre {
+  white-space: pre-line;
 }

@@ -48,7 +48,8 @@
     "serve-favicon": "^2.3.0",
     "stripe": "^4.4.0",
     "twit": "^2.2.2",
-    "validator": "^4.8.0"
+    "validator": "^4.8.0",
+    "watson-developer-cloud": "^1.2.3"
   },
   "devDependencies": {
     "blessed": "^0.1.81",

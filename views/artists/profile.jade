@@ -1,0 +1,59 @@
+extends ../layout
+
+block content
+  .page-header
+    h3 #{name}'s song profile
+
+    .row
+      .col-sm-10
+        h4 Summary
+
+        p.summary.pre #{summary}
+
+        .row
+          .col-xs-12
+          each trait in highestTraits
+            .col-sm-4.col-xs-12
+              .panel.panel-default
+                h5.panel-body #{trait.name}
+                .panel-footer
+                  .graph #{trait.percentage}
+
+
+    .row
+      .col-sm-10
+        h4 Details
+
+    .row
+      .col-xs-12
+        h5 Personality
+
+        .row
+          each persona in personality
+            .col-sm-4.col-xs-12
+              .panel.panel-default
+                h5.panel-body #{persona.self.name}
+                .panel-footer
+                  .graph #{persona.self.percentage}
+    .row
+      .col-xs-12
+        h5 Needs
+
+        .row
+          each need in needs
+            .col-sm-4.col-xs-12
+              .panel.panel-default
+                h5.panel-body #{need.self.name}
+                .panel-footer
+                  .graph #{need.self.percentage}
+    .row
+      .col-xs-12
+        h5 Values
+
+        .row
+          each value in values
+            .col-sm-4.col-xs-12
+              .panel.panel-default
+                h5.panel-body #{value.self.name}
+                .panel-footer
+                  .graph #{value.self.percentage}
