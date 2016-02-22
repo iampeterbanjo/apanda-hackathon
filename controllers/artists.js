@@ -30,7 +30,8 @@ exports.getTopArtists = function(req, res) {
     }
 
     res.render('artists/top', {
-      artists: artists
+      title: 'Artists'
+      , artists: artists
     });
   });
 }
@@ -117,7 +118,8 @@ exports.getArtistProfile = function(req, res) {
         values.sort(sortDescending);
 
         res.render('artists/profile', {
-          name: name
+          title: 'Profile'
+          , name: name
           , personality: personality
           , needs: needs
           , values: values
