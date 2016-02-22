@@ -8,6 +8,8 @@ block content
     .col-sm-10.artist-list-container
       h4 Select an artist
 
-      div.list-group.artist-list
+      div.artist-list
         each artist in artists
-          a.list-group-item(href="/artists/#{artist.name}", data-artist-id="#{artist.id}") #{artist.name}
+          .col-sm-3.col-xs-4
+            a.thumbnail(href="/artists/#{artist.name}")
+              img.img-responsive(src="#{artist.image[2]['#text']}", alt="#{artist.name}")
