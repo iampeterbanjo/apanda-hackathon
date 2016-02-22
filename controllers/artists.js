@@ -1,6 +1,7 @@
 var request = require('request')
     , watson = require('watson-developer-cloud')
     , _ = require('lodash')
+    , TextSummary = require('../public/js/lib/text-summary.js')
     , helpers = require('../public/js/lib/personality-insights-helpers.js')
     , Dictionary = require('../public/js/lib/dictionary.standalone.js')
     , Profile = require('../public/js/lib/personality-insights-profile.0.1.0.js')
@@ -64,13 +65,16 @@ exports.getArtistProfile = function(req, res) {
             , profile = new Profile(data)
             , personality = profile.mapped.personality
             , needs = profile.mapped.needs
-            , values = profile.mapped.values;
+            , values = profile.mapped.values
+            , textSummary = new TextSummary('en')
+            , summary = textSummary.getSummary(insights);
 
         res.render('artists/profile', {
           name: name
           , personality: personality.trait
           , needs: needs.trait
           , values: values.trait
+          , summary: summary
         });
       }
     );
