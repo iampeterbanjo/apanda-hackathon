@@ -3,3 +3,25 @@ extends ../layout
 block content
   .page-header
     h3 #{name}'s song profile
+
+    .row
+      each persona in personality
+        .col-sm-4.col-xs-12
+          .panel.panel-default
+            h5.panel-body #{persona.self.name}
+            .panel-footer
+              .graph #{persona.self.percentage}
+    .row
+      each need in personality
+        .col-sm-4.col-xs-12
+          .panel.panel-default
+            h5.panel-body #{need.self.name}
+            .panel-footer
+              .graph #{need.self.percentage}
+    .row
+      each value in values
+        .col-sm-4.col-xs-12
+          .panel.panel-default
+            h5.panel-body #{value.self.name}
+            .panel-footer
+              .graph #{value.self.percentage}

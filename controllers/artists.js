@@ -66,14 +66,11 @@ exports.getArtistProfile = function(req, res) {
             , needs = profile.mapped.needs
             , values = profile.mapped.values;
 
-        // console.log(profile);
-        // console.log(profile.mapped.values);
-
         res.render('artists/profile', {
           name: name
-          , personality: personality
-          , needs: needs
-          , values: values
+          , personality: personality.trait
+          , needs: needs.trait
+          , values: values.trait
         });
       }
     );
