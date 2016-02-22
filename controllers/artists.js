@@ -38,6 +38,10 @@ exports.getTopArtists = function(req, res) {
 exports.getArtistProfile = function(req, res) {
   var name = req.params.name;
 
+   function sortScores(obj1, obj2) {
+    return obj2.score - obj1.score;
+  }
+
   request(artistProfileUrl + name, function(error, lyricsnmusicResponse, body) {
     var lyrics, songs;
 
@@ -67,7 +71,32 @@ exports.getArtistProfile = function(req, res) {
             , needs = profile.mapped.needs
             , values = profile.mapped.values
             , textSummary = new TextSummary('en')
-            , summary = textSummary.getSummary(insights);
+            , summary = textSummary.getSummary(insights)
+            , traits = []
+            , highestTraits = [];
+
+        function collectTraits(trait) {
+          if(trait.self.percentage > 0.8) {
+            highestTraits.push(trait.self);
+          }
+          traits.push(trait.self);
+        }
+
+        Object.keys(personality.trait).map(function(key){
+          collectTraits(personality.trait[key]);
+        });
+
+        Object.keys(needs.trait).map(function(key){
+          collectTraits(needs.trait[key]);
+        });
+
+        Object.keys(values.trait).map(function(key){
+          collectTraits(values.trait[key]);
+        });
+
+        highestTraits.sort(function(a, b){
+          return b.percentage - a.percentage;
+        })
 
         res.render('artists/profile', {
           name: name
@@ -75,6 +104,8 @@ exports.getArtistProfile = function(req, res) {
           , needs: needs.trait
           , values: values.trait
           , summary: summary
+          , traits: traits
+          , highestTraits: highestTraits
         });
       }
     );
