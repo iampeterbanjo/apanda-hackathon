@@ -43,7 +43,7 @@ var Gauth = require('./controllers/oauth-google')
 /**
  * API keys and Passport configuration.
  */
-var passportConf = require('./config/passport');
+//var passportConf = require('./config/passport');
 
 
 /**
@@ -54,11 +54,11 @@ var app = express();
 /**
  * Connect to MongoDB.
  */
-mongoose.connect(process.env.MONGODB || process.env.MONGOLAB_URI);
-mongoose.connection.on('error', function() {
-  console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');
-  process.exit(1);
-});
+//mongoose.connect(process.env.MONGODB || process.env.MONGOLAB_URI);
+//mongoose.connection.on('error', function() {
+//  console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');
+//  process.exit(1);
+//});
 
 /**
  * Express configuration.
@@ -79,37 +79,37 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 app.use(methodOverride());
 app.use(cookieParser());
-app.use(session({
-  resave: true,
-  saveUninitialized: true,
-  secret: process.env.SESSION_SECRET,
-  store: new MongoStore({
-    url: process.env.MONGODB || process.env.MONGOLAB_URI,
-    autoReconnect: true
-  })
-}));
+//app.use(session({
+//  resave: true,
+//  saveUninitialized: true,
+//  secret: process.env.SESSION_SECRET,
+//  store: new MongoStore({
+//    url: process.env.MONGODB || process.env.MONGOLAB_URI,
+//    autoReconnect: true
+//  })
+//}));
 app.use(passport.initialize());
-app.use(passport.session());
-app.use(flash());
-app.use(function(req, res, next) {
-  if (req.path === '/api/upload') {
-    next();
-  } else {
-    lusca.csrf()(req, res, next);
-  }
-});
-app.use(lusca.xframe('SAMEORIGIN'));
-app.use(lusca.xssProtection(true));
+//app.use(passport.session());
+//app.use(flash());
+//app.use(function(req, res, next) {
+//  if (req.path === '/api/upload') {
+//    next();
+//  } else {
+//    lusca.csrf()(req, res, next);
+//  }
+//});
+//app.use(lusca.xframe('SAMEORIGIN'));
+//app.use(lusca.xssProtection(true));
 app.use(function(req, res, next) {
   res.locals.user = req.user;
   next();
 });
-app.use(function(req, res, next) {
-  if (/api/i.test(req.path)) {
-    req.session.returnTo = req.path;
-  }
-  next();
-});
+//app.use(function(req, res, next) {
+//  if (/api/i.test(req.path)) {
+//    req.session.returnTo = req.path;
+//  }
+//  next();
+//});
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
 
 /**
@@ -127,16 +127,16 @@ app.get('/signup', userController.getSignup);
 app.post('/signup', userController.postSignup);
 app.get('/contact', contactController.getContact);
 app.post('/contact', contactController.postContact);
-app.get('/account', passportConf.isAuthenticated, userController.getAccount);
-app.post('/account/profile', passportConf.isAuthenticated, userController.postUpdateProfile);
-app.post('/account/password', passportConf.isAuthenticated, userController.postUpdatePassword);
-app.post('/account/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
-app.get('/account/unlink/:provider', passportConf.isAuthenticated, userController.getOauthUnlink);
+//app.get('/account', passportConf.isAuthenticated, userController.getAccount);
+//app.post('/account/profile', passportConf.isAuthenticated, userController.postUpdateProfile);
+//app.post('/account/password', passportConf.isAuthenticated, userController.postUpdatePassword);
+//app.post('/account/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
+//app.get('/account/unlink/:provider', passportConf.isAuthenticated, userController.getOauthUnlink);
 
 /**
  * Hackathon routes
  */
-app.get('/contacts', passportConf.isAuthenticated, contactsController.getContacts);
+//app.get('/contacts', passportConf.isAuthenticated, contactsController.getContacts);
 
 app.get('/artists/top', artistsController.getTopArtists);
 
@@ -145,39 +145,39 @@ app.get('/artists/:name', artistsController.getArtistProfile);
 /**
  * API examples routes.
  */
-app.get('/api', apiController.getApi);
-
-
-app.get('/api/twitter', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getTwitter);
-app.post('/api/twitter', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.postTwitter);
-app.get('/api/upload', apiController.getFileUpload);
-app.post('/api/upload', upload.single('myFile'), apiController.postFileUpload);
+//app.get('/api', apiController.getApi);
+//
+//
+//app.get('/api/twitter', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getTwitter);
+//app.post('/api/twitter', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.postTwitter);
+//app.get('/api/upload', apiController.getFileUpload);
+//app.post('/api/upload', upload.single('myFile'), apiController.postFileUpload);
 
 /**
  * OAuth authentication routes. (Sign in)
  */
-
-app.get('/auth/google', passport.authenticate('google', { scope: ['profile','https://www.googleapis.com/auth/contacts.readonly'] }));
-app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), function(req, res) {
-  res.redirect('/contacts');
-});
-app.get('/auth/twitter', passport.authenticate('twitter'));
-app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/login' }), function(req, res) {
-  res.redirect('/contacts');
-});
-
-app.get('/auth/google/redirecturl', function(req, res){
-
-    Gauth.getToken(req, res, req.query.code);
-    // res.send(200);
-    console.log(req.query.code)
-})
-
-
-app.get('/google', function(req, res){
-    var code = '<!DOCTYPE html><html lang="en"><head> <meta charset="UTF-8"><title>Login</title></head><body> <a href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/contacts.readonly&state=security_token%3D138r5719ru3e1%26url%3Dhttps://oa2cb.example.com/myHome&redirect_uri=http://' + req.headers.host + '/auth/google/redirecturl&response_type=code&client_id='+ process.env.GOOGLE_ID+'&access_type=offline">Authenticate</a></body></html>';
-    res.send(code);
-  })
+//
+//app.get('/auth/google', passport.authenticate('google', { scope: ['profile','https://www.googleapis.com/auth/contacts.readonly'] }));
+//app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), function(req, res) {
+//  res.redirect('/contacts');
+//});
+//app.get('/auth/twitter', passport.authenticate('twitter'));
+//app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/login' }), function(req, res) {
+//  res.redirect('/contacts');
+//});
+//
+//app.get('/auth/google/redirecturl', function(req, res){
+//
+//    Gauth.getToken(req, res, req.query.code);
+//    // res.send(200);
+//    console.log(req.query.code)
+//})
+//
+//
+//app.get('/google', function(req, res){
+//    var code = '<!DOCTYPE html><html lang="en"><head> <meta charset="UTF-8"><title>Login</title></head><body> <a href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/contacts.readonly&state=security_token%3D138r5719ru3e1%26url%3Dhttps://oa2cb.example.com/myHome&redirect_uri=http://' + req.headers.host + '/auth/google/redirecturl&response_type=code&client_id='+ process.env.GOOGLE_ID+'&access_type=offline">Authenticate</a></body></html>';
+//    res.send(code);
+//  })
 
 
 /**
